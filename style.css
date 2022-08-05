@@ -1,0 +1,10 @@
+.container {
+  display: grid;
+  gap: 1px;
+  background-color: white;
+  width: 600px;
+  height: 600px;
+}
+.grid-element {
+  background-color: #dadada;
+}
