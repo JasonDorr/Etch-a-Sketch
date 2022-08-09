@@ -1,4 +1,10 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
   display: grid;
   gap: 1px;
   background-color: white;
@@ -7,4 +13,9 @@
 }
 .grid-element {
   background-color: #dadada;
+}
+
+.btn {
+  display: block;
+  margin-bottom: 1em;
 }
