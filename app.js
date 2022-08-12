@@ -1,6 +1,6 @@
 const grid = document.querySelector("#grid");
 const defaultColor = "#000";
-const defaultMode = "";
+
 const defaultSize = 16;
 
 const blackBtn = document.querySelector("#black");
@@ -12,7 +12,7 @@ const output = document.getElementById("demo");
 output.innerText = `${slider.value} x ${slider.value}`;
 
 let currentColor = defaultColor;
-let currentMode = defaultMode;
+
 let currentSize = defaultSize;
 
 const getRainbow = () => {
@@ -39,6 +39,7 @@ const changeToRainbow = () => {
     });
   });
 };
+
 const changeToGreyScale = () => {
   const gridElement = document.querySelectorAll(".grid-element");
   gridElement.forEach((element) => {
@@ -52,6 +53,9 @@ const changeToGreyScale = () => {
   });
 };
 
+const defaultMode = changeToBlack();
+let currentMode = defaultMode;
+
 const setupGrid = (size = defaultSize) => {
   grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -61,6 +65,7 @@ const setupGrid = (size = defaultSize) => {
     gridElement.classList.add("grid-element");
     grid.appendChild(gridElement);
   }
+  changeToBlack();
 };
 
 const clearGrid = () => {
@@ -71,22 +76,27 @@ const clearGrid = () => {
 };
 
 blackBtn.addEventListener("click", (e) => {
+  currentMode = "black";
   clearGrid();
   return changeToBlack();
 });
 
 grayBtn.addEventListener("click", (e) => {
+  currentMode = "grey";
   clearGrid();
   return changeToGreyScale();
 });
 
 rainbowBtn.addEventListener("click", (e) => {
+  // currentMode = changeToRainbow();
   clearGrid();
+  currentMode = "rainbow";
   return changeToRainbow();
 });
 
 clearBtn.addEventListener("click", (e) => {
   clearGrid();
+  return currentMode;
 });
 
 slider.addEventListener("input", (e) => {
@@ -96,7 +106,18 @@ slider.addEventListener("input", (e) => {
     element.remove();
   });
   setupGrid(slider.value);
+  switch (currentMode) {
+    case "black":
+      changeToBlack();
+      break;
+    case "rainbow":
+      changeToRainbow();
+      break;
+    case "grey":
+      changeToGreyScale();
+      break;
+  }
 });
 
 setupGrid(slider.value);
-changeToBlack();
+// changeToBlack();
