@@ -1,8 +1,8 @@
+// query selectors
+
 const grid = document.querySelector("#grid");
 const defaultColor = "#000";
-
 const defaultSize = 16;
-
 const blackBtn = document.querySelector("#black");
 const grayBtn = document.querySelector("#gray-scale");
 const rainbowBtn = document.querySelector("#rainbow");
@@ -12,8 +12,9 @@ const output = document.getElementById("demo");
 output.innerText = `${slider.value} x ${slider.value}`;
 
 let currentColor = defaultColor;
-
 let currentSize = defaultSize;
+
+// Color Changing Functions
 
 const getRainbow = () => {
   let r = Math.floor(Math.random() * 255 + 1);
@@ -56,6 +57,8 @@ const changeToGreyScale = () => {
 const defaultMode = changeToBlack();
 let currentMode = defaultMode;
 
+// UI & Logic
+
 const setupGrid = (size = defaultSize) => {
   grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -88,7 +91,6 @@ grayBtn.addEventListener("click", (e) => {
 });
 
 rainbowBtn.addEventListener("click", (e) => {
-  // currentMode = changeToRainbow();
   clearGrid();
   currentMode = "rainbow";
   return changeToRainbow();
@@ -119,5 +121,6 @@ slider.addEventListener("input", (e) => {
   }
 });
 
+// initializer
+
 setupGrid(slider.value);
-// changeToBlack();
